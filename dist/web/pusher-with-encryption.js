@@ -3230,9 +3230,12 @@ var ajax = function (context, socketId, callback) {
     var self = this, xhr;
     xhr = runtime.createXHR();
     xhr.open('POST', self.options.authEndpoint, true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    for (var headerName in this.authOptions.headers) {
-        xhr.setRequestHeader(headerName, this.authOptions.headers[headerName]);
+    if(this.authOptions.headers){
+        for (var headerName in this.authOptions.headers) {
+            xhr.setRequestHeader(headerName, this.authOptions.headers[headerName]);
+        }
+    }else {
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     }
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {

@@ -11,10 +11,13 @@ var fetchAuth: AuthTransport = function(
   var headers = new Headers();
 
   if (!!this.authOptions.headers) {
+    headers.delete('Content-Type');
     for (var headerName in this.authOptions.headers) {
       headers.set(headerName, this.authOptions.headers[headerName]);
     }
   } else {
+    console.warn('workers');
+
     headers.set('Content-Type', 'application/x-www-form-urlencoded');
   }
 

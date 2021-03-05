@@ -916,7 +916,7 @@ JsonpSender.prototype._start = function(url, payload, cache){
         form.style.display = 'none';
         form.style.position = 'absolute';
         form.method = 'POST';
-        form.enctype = 'application/x-www-form-urlencoded';
+        form.enctype = 'application/json';
         form.acceptCharset = "UTF-8";
         form.appendChild(area);
         _document.body.appendChild(form);

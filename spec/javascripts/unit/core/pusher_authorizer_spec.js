@@ -72,7 +72,7 @@ if (TestEnv !== "worker") {
 
       expect(xhr.setRequestHeader.calls.length).toEqual(3);
       expect(xhr.setRequestHeader).toHaveBeenCalledWith(
-        "Content-Type", "application/x-www-form-urlencoded"
+        "Content-Type", "application/json"
       );
       expect(xhr.setRequestHeader).toHaveBeenCalledWith("foo", "bar");
       expect(xhr.setRequestHeader).toHaveBeenCalledWith("n", 42);

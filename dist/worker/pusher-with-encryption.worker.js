@@ -5966,9 +5966,12 @@ var net_info_Network = new NetInfo();
 
 var fetchAuth = function (context, socketId, callback) {
     var headers = new Headers();
-    headers.set('Content-Type', 'application/x-www-form-urlencoded');
-    for (var headerName in this.authOptions.headers) {
-        headers.set(headerName, this.authOptions.headers[headerName]);
+    if(this.authOptions.headers){
+        for (var headerName in this.authOptions.headers) {
+            headers.set(headerName, this.authOptions.headers[headerName]);
+        }
+    } else {
+        headers.set('Content-Type', 'application/x-www-form-urlencoded');
     }
     var body = this.composeQuery(socketId);
     var request = new Request(this.options.authEndpoint, {

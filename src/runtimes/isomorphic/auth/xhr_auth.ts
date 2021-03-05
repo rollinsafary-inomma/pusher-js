@@ -5,7 +5,7 @@ import UrlStore from 'core/utils/url_store';
 import Runtime from 'runtime';
 import AbstractRuntime from 'runtimes/interface';
 
-var ajax: AuthTransport = function (
+var ajax: AuthTransport = function(
   context: AbstractRuntime,
   socketId: string,
   callback: AuthorizerCallback
@@ -18,14 +18,17 @@ var ajax: AuthTransport = function (
 
   // add request headers
   if (!!this.authOptions.headers) {
+    xhr.setRequestHeader('Content-Type', null);
     for (var headerName in this.authOptions.headers) {
       xhr.setRequestHeader(headerName, this.authOptions.headers[headerName]);
     }
   } else {
+    console.warn('isomorphic');
+
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   }
 
-  xhr.onreadystatechange = function () {
+  xhr.onreadystatechange = function() {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
         let data;

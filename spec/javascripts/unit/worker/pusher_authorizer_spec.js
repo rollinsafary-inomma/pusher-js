@@ -34,7 +34,7 @@ describe("Fetch Authorizer", function(){
 
     var lastCall = fetchMock.lastCall(endpoint)[0];
     var sentHeaders = lastCall.headers;
-    expect(sentHeaders.get("Content-Type")).toEqual("application/x-www-form-urlencoded");
+    expect(sentHeaders.get("Content-Type")).toEqual("application/json");
     expect(sentHeaders.get("foo")).toEqual("bar");
     expect(sentHeaders.get("n")).toEqual('42');
   });
