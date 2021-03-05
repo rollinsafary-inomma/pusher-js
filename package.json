@@ -8,7 +8,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --config .prettierrc --write 'src/**/*.ts' 'webpack/**/*.js'",
-    "check-format": "prettier --config .prettierrc --check 'src/**/*.ts' 'webpack/**/*.js'"
+    "check-format": "prettier --config .prettierrc --check 'src/**/*.ts' 'webpack/**/*.js'",
+    "build:shared": "webpack --config webpack/config.shared --env production --mode production --progress --colors",
+    "build:node": "webpack --config webpack/config.node --env production --mode production --progress --colors",
+    "build:react-native": "webpack --config webpack/config.react-native --env production --mode production --progress --colors",
+    "build:worker": "webpack --config webpack/config.worker --env production --mode production --progress --colors",
+    "build:web": "webpack --config webpack/config.web --env production --mode production --progress --colors",
+    "build": "npm run build:shared & npm run build:node & npm run build:react-native & npm run build:web"
   },
   "repository": {
     "type": "git",
@@ -62,6 +68,7 @@
     "xmlhttprequest": "^1.8.0"
   },
   "dependencies": {
+    "runtime": "^0.14.1",
     "tweetnacl": "^1.0.3"
   }
 }
