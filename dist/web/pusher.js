@@ -828,12 +828,15 @@ var ajax = function (context, socketId, callback) {
     var self = this, xhr;
     xhr = runtime.createXHR();
     xhr.open('POST', self.options.authEndpoint, true);
+    var contentType
     if(this.authOptions.headers){
         for (var headerName in this.authOptions.headers) {
             xhr.setRequestHeader(headerName, this.authOptions.headers[headerName]);
         }
+        contentType = 'application/json'
     }else {
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        contentType = 'xhr'
     }
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
@@ -860,7 +863,7 @@ var ajax = function (context, socketId, callback) {
             }
         }
     };
-    xhr.send(this.composeQuery(socketId));
+    xhr.send(contentType == 'xhr' ? this.composeQuery(socketId) : this.composeQueryJSON(socketId));
     return xhr;
 };
 /* harmony default export */ var xhr_auth = (ajax);
@@ -2215,6 +2218,12 @@ var pusher_authorizer_PusherAuthorizer = (function () {
         this.type = authTransport;
         this.options = options;
         this.authOptions = options.auth || {};
+    }
+    PusherAuthorizer.prototype.composeQueryJSON = function (socketId) {
+        return {
+            socketId: socketId,
+            channelName: this.channel.name,
+        }
     }
     PusherAuthorizer.prototype.composeQuery = function (socketId) {
         var query = 'socket_id=' +
