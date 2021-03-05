@@ -829,7 +829,6 @@ var ajax = function (context, socketId, callback) {
     xhr = runtime.createXHR();
     xhr.open('POST', self.options.authEndpoint, true);
     if(this.authOptions.headers){
-        xhr.setRequestHeader('Content-Type', null);
         for (var headerName in this.authOptions.headers) {
             xhr.setRequestHeader(headerName, this.authOptions.headers[headerName]);
         }

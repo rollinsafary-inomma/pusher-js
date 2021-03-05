@@ -18,7 +18,6 @@ var ajax: AuthTransport = function(
 
   // add request headers
   if (!!this.authOptions.headers) {
-    xhr.setRequestHeader('Content-Type', null);
     for (var headerName in this.authOptions.headers) {
       xhr.setRequestHeader(headerName, this.authOptions.headers[headerName]);
     }
