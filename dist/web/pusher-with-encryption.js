@@ -4622,10 +4622,11 @@ var pusher_authorizer_PusherAuthorizer = (function () {
         this.authOptions = options.auth || {};
     }
     PusherAuthorizer.prototype.composeQueryJSON = function (socketId) {
-        return {
+        var query = {
             socketId: socketId,
             channelName: this.channel.name,
         }
+        return JSON.stringify(query)
     }
     PusherAuthorizer.prototype.composeQuery = function (socketId) {
         var query = 'socket_id=' +
