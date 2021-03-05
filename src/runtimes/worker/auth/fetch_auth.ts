@@ -1,7 +1,7 @@
-import AbstractRuntime from 'runtimes/interface';
 import { AuthTransport } from 'core/auth/auth_transports';
-import { AuthorizerCallback, AuthData } from 'core/auth/options';
+import { AuthData, AuthorizerCallback } from 'core/auth/options';
 import { HTTPAuthError } from 'core/errors';
+import AbstractRuntime from 'runtimes/interface';
 
 var fetchAuth: AuthTransport = function(
   context: AbstractRuntime,
@@ -9,10 +9,13 @@ var fetchAuth: AuthTransport = function(
   callback: AuthorizerCallback
 ) {
   var headers = new Headers();
-  headers.set('Content-Type', 'application/x-www-form-urlencoded');
 
-  for (var headerName in this.authOptions.headers) {
-    headers.set(headerName, this.authOptions.headers[headerName]);
+  if (!!this.authOptions.headers) {
+    for (var headerName in this.authOptions.headers) {
+      headers.set(headerName, this.authOptions.headers[headerName]);
+    }
+  } else {
+    headers.set('Content-Type', 'application/x-www-form-urlencoded');
   }
 
   var body = this.composeQuery(socketId);

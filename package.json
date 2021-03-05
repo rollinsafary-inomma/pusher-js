@@ -14,7 +14,7 @@
     "build:react-native": "webpack --config webpack/config.react-native --env production --mode production --progress --colors",
     "build:worker": "webpack --config webpack/config.worker --env production --mode production --progress --colors",
     "build:web": "webpack --config webpack/config.web --env production --mode production --progress --colors",
-    "build": "npm run build:shared & npm run build:node & npm run build:react-native & npm run build:web"
+    "build": "npm run build:shared & npm run build:node & npm run build:react-native & npm run build:web & npm run build:worker"
   },
   "repository": {
     "type": "git",
